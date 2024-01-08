@@ -1,0 +1,41 @@
+name: A trigger for workflows
+description: A composite action to trigger workflows through the API (supporting badges etc.)
+
+branding:
+  icon: code
+  color: blue
+
+inputs:
+  ref:
+    description: ref to trigger the workflow with
+    required: true
+    default: main
+  file:
+    description: path to workflow file
+    required: true
+  GITHUB_TOKEN:
+    description: we need this to call the API
+    required: true
+
+outputs:
+  response:
+    description: response
+    value: ${{ steps.main.outputs.RESPONSE }}
+
+
+runs:
+  using: composite
+  steps:
+    - name: Trigger Reusable Workflow
+      id: main
+      shell: bash
+      env:
+        REPO_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+        WORKFLOW_FILE: ${{ inputs.file }}
+        REF: ${{ inputs.ref }}
+      run: |
+        PAYLOAD="{\"ref\": \"${REF}\", \"inputs\": {}}"
+        RESPONSE=$(curl -X POST "https://api.github.com/repos/${{ github.repository }}/actions/workflows/${WORKFLOW_FILE}/dispatches" \
+          -H "Authorization: Bearer ${REPO_TOKEN}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d "${PAYLOAD}")

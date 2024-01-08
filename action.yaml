@@ -1,4 +1,4 @@
-name: A trigger for workflows
+name: workflow-trigger
 description: A composite action to trigger workflows through the API (supporting badges etc.)
 
 branding:

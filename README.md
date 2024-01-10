@@ -1,9 +1,29 @@
-# Workflow-Trigger
-[![tests](https://img.shields.io/github/actions/workflow/status/toonvd/workflow-trigger/triggered.yaml?style=for-the-badge&label=tests)]([https://github.com/toonvd/workflow-trigger/actions/workflows/triggered.yaml](https://github.com/toonvd/workflow-trigger/actions/workflows/triggered.yaml)https://github.com/toonvd/workflow-trigger/actions/workflows/triggered.yaml)
+# composite-workflow-trigger
 
-Triggers a workflow using the API because the current workflow_run / workflow_call system is flawed:
+[![tests](https://img.shields.io/github/actions/workflow/status/toonvd/workflow-trigger/triggered.yaml?style=for-the-badge&label=tests)](https://github.com/toonvd/workflow-trigger/actions/workflows/triggered.yaml)
 
-- workflow_run: loses ref from the third nest on
-- workflow_call: does not really trigger the workflow separately, no badges, bad overview etc.
+## Why?
+I decided to make this workflow dispatcher because current workflow mechanics are flawed.
 
-Usage is at your own risk.
+- `workflow_run`:
+  - loses `ref` from the third nest on
+  - maximum nesting of `4`
+- `workflow_call`:
+  - does not really trigger the workflow separately:
+    - no badges
+    - sloppy summary
+
+## Requirements
+`bash` and `jq`, `jq` is available by default in a lot of `Linux` runners.
+
+## Installation
+```yaml 
+- name: composite-workflow-trigger        
+  uses: toonvd/workflow-trigger@v0.0.2
+```
+## Usage
+Please check the [workflows](https://github.com/toonvd/workflow-trigger/tree/main/.github/workflows).
+
+Summary:
+ - `ref` should be a required [input](https://github.com/toonvd/workflow-trigger/blob/main/.github/workflows/triggered.yaml#L4) at the triggered workflow
+ - the trigger needs the `file` to trigger, the `ref` and the `GITHUB_TOKEN` to [work](https://github.com/toonvd/workflow-trigger/blob/main/.github/workflows/main.yaml#L12)

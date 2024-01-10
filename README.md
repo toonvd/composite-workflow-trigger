@@ -14,7 +14,7 @@ I decided to make this workflow dispatcher because current workflow mechanics ar
     - sloppy summary
 
 ## Requirements
-`bash` and `jq`, `jq` is available by default in a lot of `Linux` runners.
+`bash` and `jq`, `jq` is available by default in a lot of `Linux` runners
 
 ## Installation
 ```yaml 

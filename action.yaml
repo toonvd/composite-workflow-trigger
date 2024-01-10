@@ -33,8 +33,10 @@ runs:
         REPO_TOKEN: ${{ inputs.GITHUB_TOKEN }}
         WORKFLOW_FILE: ${{ inputs.file }}
         REF: ${{ inputs.ref }}
+        INPUTS: ${{ toJson(inputs) }}
       run: |
-        PAYLOAD="{\"ref\": \"${REF}\", \"inputs\": {}}"
+        echo "${INPUTS}"
+        PAYLOAD="{\"ref\": \"${REF}\", \"inputs\": \"${INPUTS}\"}"
         RESPONSE=$(curl -X POST "https://api.github.com/repos/${{ github.repository }}/actions/workflows/${WORKFLOW_FILE}/dispatches" \
           -H "Authorization: Bearer ${REPO_TOKEN}" \
           -H "Accept: application/vnd.github.v3+json" \

@@ -1,6 +1,10 @@
 name: triggered
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        type: string
+        required: true
 jobs:
   trigger:
     runs-on: ubuntu-latest

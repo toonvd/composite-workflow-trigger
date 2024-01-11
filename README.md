@@ -19,7 +19,7 @@ I decided to make this workflow dispatcher because current workflow mechanics ar
 ## Installation
 ```yaml 
 - name: composite-workflow-trigger        
-  uses: toonvd/composite-workflow-trigger@v0.0.2
+  uses: toonvd/composite-workflow-trigger@v0.0.3
 ```
 ## Usage
 Please check the [workflows](https://github.com/toonvd/workflow-trigger/tree/main/.github/workflows).

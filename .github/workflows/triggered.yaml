@@ -2,7 +2,7 @@ name: triggered
 on:
   workflow_dispatch:
     inputs:
-      ref:
+      toon:
         type: string
         required: true
 jobs:
@@ -14,3 +14,8 @@ jobs:
           TEST_REF: ${{ github.ref_name }}
         run: |
           [[ "${TEST_REF}" != "test" ]] && exit 22 || echo "success"
+      - name: Debug inputs
+        env:
+          TEST_INPUT: ${{ inputs.toon }}
+        run: |
+          [[ "${TEST_INPUT}" != "test" ]] && exit 22 || echo "success"

@@ -13,3 +13,4 @@ jobs:
           ref: test
           file: triggered.yaml
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          toon: test

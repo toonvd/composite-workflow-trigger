@@ -25,5 +25,4 @@ I decided to make this workflow dispatcher because current workflow mechanics ar
 Please check the [workflows](https://github.com/toonvd/workflow-trigger/tree/main/.github/workflows).
 
 Summary:
- - `ref` should be a required [input](https://github.com/toonvd/workflow-trigger/blob/main/.github/workflows/triggered.yaml#L4) at the triggered workflow
  - the trigger needs the `file` to trigger, the `ref` and the `GITHUB_TOKEN` to [work](https://github.com/toonvd/workflow-trigger/blob/main/.github/workflows/main.yaml#L12)

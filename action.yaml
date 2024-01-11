@@ -36,7 +36,7 @@ runs:
         INPUTS: ${{ toJSON(inputs) }}
       run: |
         PAYLOAD="{ \"ref\": \"${REF}\", \"inputs\":${INPUTS} }"
-        PARSED_PAYLOAD=$( echo ${PAYLOAD} | jq -r 'del(.inputs.GITHUB_TOKEN)|del(.inputs.file)')
+        PARSED_PAYLOAD=$( echo ${PAYLOAD} | jq -r 'del(.inputs.GITHUB_TOKEN)|del(.inputs.file)|del(.inputs.ref)')
         RESPONSE=$(curl -X POST "https://api.github.com/repos/${{ github.repository }}/actions/workflows/${WORKFLOW_FILE}/dispatches" \
           -H "Authorization: Bearer ${REPO_TOKEN}" \
           -H "Accept: application/vnd.github.v3+json" \
